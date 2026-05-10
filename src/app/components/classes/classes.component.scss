@@ -1,0 +1,92 @@
+/* HEADER */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #f0fdf4;
+}
+
+/* ADD BUTTON */
+:host ::ng-deep .add-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 12px;
+}
+
+/* GRID */
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* CARD */
+:host ::ng-deep .class-card {
+  background: rgba(12, 22, 18, 0.7);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  border-radius: 18px;
+
+  color: #d1fae5;
+}
+
+/* HEADER INSIDE CARD */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px;
+  color: #f0fdf4;
+}
+
+.card-header i {
+  color: #22c55e;
+  font-size: 18px;
+}
+
+/* BODY */
+.card-body p {
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* SUBJECT TAGS */
+.tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+
+  font-size: 12px;
+}
+
+/* make card clickable */
+.clickable-card {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* hover effect */
+.clickable-card:hover {
+  transform: translateY(-5px);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
+}

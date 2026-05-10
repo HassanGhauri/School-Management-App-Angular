@@ -1,0 +1,53 @@
+<div class="page-header">
+  <h2>Classes</h2>
+</div>
+
+<div class="class-grid">
+
+  <p-card
+    *ngFor="let cls of classes"
+    styleClass="class-card clickable-card"
+    (click)="openClass(cls)"
+  >
+
+    <ng-template pTemplate="header">
+      <div class="card-header">
+        <i class="pi pi-building"></i>
+        <h3>{{ cls.className }}</h3>
+      </div>
+    </ng-template>
+
+    <div class="card-body">
+
+      <p>
+        <i class="pi pi-user"></i>
+        <b>Teacher:</b>
+        {{ cls.classTeacherName || 'Not Assigned' }}
+      </p>
+
+      <p>
+        <i class="pi pi-users"></i>
+        <b>Students:</b>
+        {{ cls.students.length }}
+      </p>
+
+      <p>
+        <i class="pi pi-book"></i>
+        <b>Subjects:</b>
+      </p>
+
+      <div class="tags">
+        <span class="tag" *ngFor="let s of cls.subjects">
+          {{ s }}
+        </span>
+      </div>
+
+    </div>
+
+  </p-card>
+
+</div>
+
+
+<!-- 👇 THIS IS REQUIRED FOR CHILD ROUTE -->
+<router-outlet></router-outlet>

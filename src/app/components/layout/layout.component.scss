@@ -1,0 +1,141 @@
+.layout-container {
+  display: flex;
+  height: 100vh;
+
+  background:
+    radial-gradient(circle at top left, #22c55e33, transparent 40%),
+    radial-gradient(circle at bottom right, #0ea5e944, transparent 45%),
+    linear-gradient(135deg, #0b1220, #052e16);
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+  width: 290px;
+  padding: 20px;
+
+  background: rgba(12, 22, 18, 0.75);
+  backdrop-filter: blur(18px);
+
+  border-right: 1px solid rgba(34, 197, 94, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* HEADER */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  color: white;
+  font-size: 22px;
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  color: #f0fdf4;
+}
+
+.sidebar-header p {
+  margin: 0;
+  font-size: 12px;
+  color: #86efac;
+}
+
+/* ================= PRIME MENU CUSTOMIZATION ================= */
+:host ::ng-deep .custom-menu {
+  background: transparent;
+  border: none;
+}
+
+/* menu item */
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(34, 197, 94, 0.12);
+  color: #d1fae5;
+
+  border-radius: 12px;
+
+  margin-bottom: 10px;
+}
+
+/* hover */
+:host ::ng-deep .p-panelmenu .p-panelmenu-header > a:hover {
+  background: rgba(34, 197, 94, 0.12);
+}
+
+/* active */
+:host ::ng-deep .p-panelmenu .p-menuitem-link {
+  color: #d1fae5;
+}
+
+/* icons */
+:host ::ng-deep .p-panelmenu .pi {
+  color: #22c55e;
+}
+
+/* ================= FOOTER ================= */
+.sidebar-footer {
+  margin-top: auto;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px;
+
+  color: #86efac;
+  font-size: 13px;
+
+  border-top: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+/* ================= CONTENT ================= */
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* TOPBAR */
+.topbar {
+  padding: 18px;
+  border-radius: 16px;
+
+  background: rgba(12, 22, 18, 0.6);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+
+  color: #f0fdf4;
+  margin-bottom: 20px;
+}
+
+.topbar h1 {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* PAGE AREA */
+.page-content {
+  padding: 20px;
+
+  border-radius: 18px;
+
+  background: rgba(12, 22, 18, 0.55);
+  border: 1px solid rgba(34, 197, 94, 0.12);
+}

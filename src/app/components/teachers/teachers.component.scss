@@ -1,0 +1,82 @@
+/* =========================
+   PAGE HEADER
+========================= */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+}
+
+.page-header h2 {
+  margin: 0;
+  color: #f0fdf4;
+}
+
+/* =========================
+   ADD BUTTON
+========================= */
+:host ::ng-deep .add-btn {
+  background: linear-gradient(
+    135deg,
+    #22c55e,
+    #16a34a
+  );
+
+  border: none;
+  border-radius: 12px;
+}
+
+/* =========================
+   TABLE
+========================= */
+.teacher-table {
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: rgba(12, 22, 18, 0.68);
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+/* =========================
+   TABLE HEADER
+========================= */
+:host ::ng-deep .p-datatable-thead > tr > th {
+  background: rgba(34, 197, 94, 0.12);
+
+  color: #f0fdf4;
+
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+/* =========================
+   TABLE ROWS
+========================= */
+:host ::ng-deep .p-datatable-tbody > tr {
+  background: transparent;
+  color: #d1fae5;
+}
+
+:host ::ng-deep .p-datatable-tbody > tr:hover {
+  background: rgba(34, 197, 94, 0.08);
+}
+
+/* =========================
+   PAGINATOR
+========================= */
+:host ::ng-deep .p-paginator {
+  background: transparent;
+  border: none;
+}
+
+/* =========================
+   TAG
+========================= */
+:host ::ng-deep .p-tag {
+  border-radius: 10px;
+  padding: 4px 10px;
+}

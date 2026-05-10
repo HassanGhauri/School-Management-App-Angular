@@ -1,0 +1,74 @@
+<div class="login-container">
+
+  <p-card styleClass="login-card">
+
+    <!-- HEADER -->
+    <div class="header">
+      <i class="pi pi-book logo"></i>
+
+      <h2>School Management System</h2>
+      <p>Sign in to continue</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-form">
+
+      <!-- EMAIL -->
+      <div class="field">
+        <label>
+          <i class="pi pi-envelope icon"></i>
+          Email
+        </label>
+
+        <input
+          type="text"
+          pInputText
+          formControlName="email"
+          placeholder="Enter your email"
+          class="full-width"
+        />
+
+        <small class="error-space">
+          <small class="error"
+            *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Invalid email
+          </small>
+        </small>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="field">
+        <label>
+          <i class="pi pi-lock icon"></i>
+          Password
+        </label>
+
+        <p-password
+          formControlName="password"
+          [toggleMask]="true"
+          placeholder="Enter password"
+          styleClass="full-width"
+        ></p-password>
+
+        <!-- fixed space reservation -->
+        <small class="error-space">
+          <small class="error"
+            *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password must be at least 6 characters
+          </small>
+        </small>
+      </div>
+
+      <!-- BUTTON -->
+      <button
+        pButton
+        type="submit"
+        label="Login"
+        icon="pi pi-sign-in"
+        class="login-btn"
+      ></button>
+
+    </form>
+
+  </p-card>
+
+</div>

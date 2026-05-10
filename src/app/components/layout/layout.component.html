@@ -1,0 +1,45 @@
+<div class="layout-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- HEADER -->
+    <div class="sidebar-header">
+      <div class="logo">
+        <i class="pi pi-graduation-cap"></i>
+      </div>
+
+      <div>
+        <h2>School MS</h2>
+        <p>Management Portal</p>
+      </div>
+    </div>
+
+    <!-- PRIME MENU -->
+    <p-panelMenu [model]="items" styleClass="custom-menu"></p-panelMenu>
+
+    <!-- FOOTER -->
+    <div class="sidebar-footer">
+      <i class="pi pi-sparkles"></i>
+      <span>Smart Education System</span>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <div class="topbar">
+      <h1>
+        <i class="pi pi-th-large"></i>
+        School Management System
+      </h1>
+    </div>
+
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </main>
+
+</div>
