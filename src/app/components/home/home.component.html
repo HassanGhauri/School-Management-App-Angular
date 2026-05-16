@@ -1,25 +1,111 @@
 <div class="dashboard">
 
-  <!-- TEACHERS CARD -->
-  <p-card styleClass="stat-card teacher-card">
+  <!-- TEACHERS -->
+  <p-card
+    styleClass="
+      stat-card
+      teacher-card
+    "
+  >
+
     <div class="card-content">
-      <i class="pi pi-user-edit icon"></i>
-      <div>
-        <h2>{{ totalTeachers }}</h2>
-        <p>Teachers</p>
+
+      <div class="icon-wrapper">
+
+        <i
+          class="
+            pi
+            pi-user-edit
+            icon
+          "
+        ></i>
+
       </div>
+
+      <div>
+
+        <h2>
+          {{ totalTeachers }}
+        </h2>
+
+        <p>Teachers</p>
+
+      </div>
+
     </div>
+
   </p-card>
 
-  <!-- STUDENTS CARD -->
-  <p-card styleClass="stat-card student-card">
+  <!-- STUDENTS -->
+  <p-card
+    styleClass="
+      stat-card
+      student-card
+    "
+  >
+
     <div class="card-content">
-      <i class="pi pi-users icon"></i>
-      <div>
-        <h2>{{ totalStudents }}</h2>
-        <p>Students</p>
+
+      <div class="icon-wrapper">
+
+        <i
+          class="
+            pi
+            pi-users
+            icon
+          "
+        ></i>
+
       </div>
+
+      <div>
+
+        <h2>
+          {{ totalStudents }}
+        </h2>
+
+        <p>Students</p>
+
+      </div>
+
     </div>
+
+  </p-card>
+
+  <!-- CLASSES -->
+  <p-card
+    styleClass="
+      stat-card
+      class-card
+    "
+  >
+
+    <div class="card-content">
+
+      <div class="icon-wrapper">
+
+        <i
+          class="
+            pi
+            pi-building
+            icon
+          "
+        ></i>
+
+      </div>
+
+      <div>
+
+        <h2>
+          {{ totalClasses }}
+        </h2>
+
+        <p>Classes</p>
+
+      </div>
+
+    </div>
+
   </p-card>
 
 </div>

@@ -6,6 +6,7 @@
     label="Add Teacher"
     icon="pi pi-user-plus"
     styleClass="add-btn"
+    (click)="openAddTeacherDialog()"
   ></p-button>
 
 </div>
@@ -19,7 +20,7 @@
   styleClass="teacher-table"
 >
 
-  <!-- TABLE HEADER -->
+  <!-- HEADER -->
   <ng-template pTemplate="header">
     <tr>
       <th>ID</th>
@@ -27,11 +28,13 @@
       <th>Email</th>
       <th>Age</th>
       <th>Role</th>
+      <th>Actions</th>
     </tr>
   </ng-template>
 
-  <!-- TABLE BODY -->
+  <!-- BODY -->
   <ng-template pTemplate="body" let-teacher>
+
     <tr>
 
       <td>{{ teacher.id }}</td>
@@ -52,7 +55,55 @@
         ></p-tag>
       </td>
 
+      <!-- ACTIONS -->
+      <td class="actions">
+
+        <!-- EDIT -->
+        <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          class="
+            p-button-rounded
+            p-button-text
+            p-button-success
+          "
+          pTooltip="Edit Teacher"
+          (click)="editTeacher(teacher)"
+        ></button>
+
+        <!-- DELETE -->
+        <button
+          pButton
+          type="button"
+          icon="pi pi-trash"
+          class="
+            p-button-rounded
+            p-button-text
+            p-button-danger
+          "
+          pTooltip="Delete Teacher"
+          (click)="deleteTeacher(teacher, $event)"
+        ></button>
+
+      </td>
+
     </tr>
+
   </ng-template>
 
 </p-table>
+
+<!-- =========================
+     DYNAMIC DIALOG
+========================= -->
+<app-dialog-form
+
+  [(visible)]="showTeacherDialog"
+
+  type="teacher"
+
+  (save)="addTeacher($event)"
+
+>
+</app-dialog-form>

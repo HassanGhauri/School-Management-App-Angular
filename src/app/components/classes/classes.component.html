@@ -1,5 +1,15 @@
 <div class="page-header">
+
   <h2>Classes</h2>
+
+  <!-- CREATE BUTTON -->
+  <p-button
+    label="Create Class"
+    icon="pi pi-plus"
+    styleClass="add-btn"
+    (click)="openCreateDialog()"
+  ></p-button>
+
 </div>
 
 <div class="class-grid">
@@ -10,36 +20,86 @@
     (click)="openClass(cls)"
   >
 
+    <!-- CARD HEADER -->
     <ng-template pTemplate="header">
+
       <div class="card-header">
-        <i class="pi pi-building"></i>
-        <h3>{{ cls.className }}</h3>
+
+        <div class="title">
+
+          <i class="pi pi-building"></i>
+
+          <h3>{{ cls.className }}</h3>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+
+          <!-- EDIT -->
+          <button
+            pButton
+            type="button"
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-text p-button-success"
+
+            pTooltip="Edit Class"
+
+            (click)="editClass(cls); $event.stopPropagation()"
+          ></button>
+
+          <!-- DELETE -->
+          <button
+            pButton
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-text p-button-danger"
+
+            pTooltip="Delete Class"
+
+            (click)="deleteClass(cls, $event)"
+          ></button>
+
+        </div>
+
       </div>
+
     </ng-template>
 
+    <!-- CARD BODY -->
     <div class="card-body">
 
       <p>
         <i class="pi pi-user"></i>
+
         <b>Teacher:</b>
+
         {{ cls.classTeacherName || 'Not Assigned' }}
       </p>
 
       <p>
         <i class="pi pi-users"></i>
+
         <b>Students:</b>
+
         {{ cls.students.length }}
       </p>
 
       <p>
         <i class="pi pi-book"></i>
+
         <b>Subjects:</b>
       </p>
 
       <div class="tags">
-        <span class="tag" *ngFor="let s of cls.subjects">
+
+        <span
+          class="tag"
+          *ngFor="let s of cls.subjects"
+        >
           {{ s }}
         </span>
+
       </div>
 
     </div>
@@ -48,6 +108,28 @@
 
 </div>
 
+<!-- =========================
+     DIALOG
+========================= -->
+<app-dialog-form
 
-<!-- 👇 THIS IS REQUIRED FOR CHILD ROUTE -->
+  [(visible)]="showClassDialog"
+
+  type="class"
+
+  [editMode]="editMode"
+
+  [data]="selectedClassData"
+
+  [teachers]="teachers"
+
+  [students]="students"
+
+  [subjects]="subjects"
+
+  (save)="saveClass($event)"
+
+>
+</app-dialog-form>
+
 <router-outlet></router-outlet>

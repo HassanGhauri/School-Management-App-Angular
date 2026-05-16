@@ -1,1 +1,271 @@
-<p>dialog-form works!</p>
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="true"
+  [draggable]="false"
+  [style]="{ width: '700px' }"
+
+  [header]="
+    editMode
+      ? 'Edit ' + type
+      : 'Add ' + type
+  "
+
+  styleClass="custom-dialog"
+>
+
+  <form
+    [formGroup]="form"
+    class="dialog-form"
+  >
+
+    <!-- =========================
+         USER FORM
+    ========================== -->
+    <ng-container
+      *ngIf="
+        type === 'student' ||
+        type === 'teacher'
+      "
+    >
+
+      <div class="form-grid">
+
+        <!-- FIRST NAME -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-user"></i>
+            First Name
+          </label>
+
+          <input
+            pInputText
+            formControlName="firstName"
+            placeholder="Enter first name"
+          />
+
+        </div>
+
+        <!-- LAST NAME -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-users"></i>
+            Last Name
+          </label>
+
+          <input
+            pInputText
+            formControlName="lastName"
+            placeholder="Enter last name"
+          />
+
+        </div>
+
+        <!-- AGE -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-calendar"></i>
+            Age
+          </label>
+
+          <input
+            pInputText
+            type="number"
+            formControlName="age"
+            placeholder="Enter age"
+          />
+
+        </div>
+
+        <!-- EMAIL -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-envelope"></i>
+            Email
+          </label>
+
+          <input
+            pInputText
+            formControlName="email"
+            placeholder="Enter email"
+          />
+
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="field full-width">
+
+          <label>
+            <i class="pi pi-lock"></i>
+            Password
+          </label>
+
+          <input
+            pInputText
+            type="password"
+            formControlName="passwordHash"
+            placeholder="Enter password"
+          />
+
+        </div>
+
+      </div>
+
+    </ng-container>
+
+    <!-- =========================
+         CLASS FORM
+    ========================== -->
+    <ng-container *ngIf="type === 'class'">
+
+      <div class="form-grid">
+
+        <!-- CLASS NAME -->
+        <div class="field full-width">
+
+          <label>
+            <i class="pi pi-building"></i>
+            Class Name
+          </label>
+
+          <input
+            pInputText
+            formControlName="className"
+            placeholder="Enter class name"
+          />
+
+        </div>
+
+        <!-- CLASS TEACHER -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-user"></i>
+            Class Teacher
+          </label>
+
+          <p-dropdown
+            [options]="teachers"
+            optionLabel="fullName"
+            optionValue="id"
+            placeholder="Select Teacher"
+            formControlName="classTeacherId"
+          >
+          </p-dropdown>
+
+        </div>
+
+        <!-- ASSIGN TEACHERS -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-users"></i>
+            Assign Teachers
+          </label>
+
+          <p-multiSelect
+            [options]="teachers"
+            optionLabel="fullName"
+            optionValue="id"
+            placeholder="Assign Teachers"
+            formControlName="teacherIds"
+          >
+          </p-multiSelect>
+
+        </div>
+
+        <!-- STUDENTS -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-users"></i>
+            Assign Students
+          </label>
+
+          <p-multiSelect
+            [options]="students"
+            optionLabel="fullName"
+            optionValue="id"
+            placeholder="Select Students"
+            formControlName="studentIds"
+          >
+          </p-multiSelect>
+
+        </div>
+
+        <!-- SUBJECTS -->
+        <div class="field">
+
+          <label>
+            <i class="pi pi-book"></i>
+            Add Subjects
+          </label>
+
+          <p-multiSelect
+            [options]="subjects"
+            optionLabel="name"
+            optionValue="id"
+            placeholder="Select Subjects"
+            formControlName="subjectIds"
+          >
+          </p-multiSelect>
+
+        </div>
+
+      </div>
+
+    </ng-container>
+
+    <!-- =========================
+         SUBJECT FORM
+    ========================== -->
+    <ng-container *ngIf="type === 'subject'">
+
+      <div class="field">
+
+        <label>
+          <i class="pi pi-book"></i>
+          Subject Name
+        </label>
+
+        <input
+          pInputText
+          formControlName="name"
+          placeholder="Enter subject name"
+        />
+
+      </div>
+
+    </ng-container>
+
+  </form>
+
+  <!-- FOOTER -->
+  <ng-template pTemplate="footer">
+
+    <p-button
+      label="Cancel"
+      severity="secondary"
+      icon="pi pi-times"
+      (click)="close()"
+    ></p-button>
+
+    <p-button
+      [label]="
+        editMode
+          ? 'Update'
+          : 'Save'
+      "
+
+      icon="pi pi-check"
+
+      (click)="submit()"
+    ></p-button>
+
+  </ng-template>
+
+</p-dialog>

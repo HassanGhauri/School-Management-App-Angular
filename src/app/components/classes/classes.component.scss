@@ -90,3 +90,28 @@
   border: 1px solid rgba(34, 197, 94, 0.4);
   box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
 }
+/* ACTION BUTTONS */
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+}
+
+/* BUTTONS */
+:host ::ng-deep .p-button.p-button-text {
+  width: 34px;
+  height: 34px;
+}
