@@ -7,6 +7,7 @@ import { ClassesComponent } from './components/classes/classes.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassComponent } from './components/class/class.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
@@ -21,6 +22,7 @@ export const routes: Routes = [
       { path: 'classes', component: ClassesComponent},
       { path: 'classes/:id', component: ClassComponent},
       { path: 'teachers', component: TeachersComponent },
+      { path: 'profile', component: ProfileComponent }
     ]
   }
 ];

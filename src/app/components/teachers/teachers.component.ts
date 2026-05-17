@@ -39,7 +39,12 @@ export class TeachersComponent implements OnInit {
 
   selectedTeacherId?: number;
 
-  constructor(private appService: AppService) {}
+  // 👇 SELECTED TEACHER DATA
+  selectedTeacher: User | null = null;
+
+  constructor(
+    private appService: AppService
+  ) {}
 
   ngOnInit(): void {
     this.loadTeachers();
@@ -63,12 +68,17 @@ export class TeachersComponent implements OnInit {
         this.loading = false;
       },
 
-      error: () => this.loading = false
+      error: (err) => {
+
+        console.error(err);
+
+        this.loading = false;
+      }
     });
   }
 
   /* =========================
-     ADD
+     OPEN ADD DIALOG
   ========================= */
   openAddTeacherDialog() {
 
@@ -76,17 +86,23 @@ export class TeachersComponent implements OnInit {
 
     this.selectedTeacherId = undefined;
 
+    // RESET DATA
+    this.selectedTeacher = null;
+
     this.showTeacherDialog = true;
   }
 
   /* =========================
-     EDIT
+     EDIT TEACHER
   ========================= */
   editTeacher(teacher: User) {
 
     this.editMode = true;
 
     this.selectedTeacherId = teacher.id;
+
+    // PASS DATA TO FORM
+    this.selectedTeacher = teacher;
 
     this.showTeacherDialog = true;
   }
@@ -97,44 +113,100 @@ export class TeachersComponent implements OnInit {
   addTeacher(formData: any) {
 
     const payload: User = {
+
       firstName: formData.firstName,
+
       lastName: formData.lastName,
+
       email: formData.email,
-      passwordHash: formData.passwordHash,
+
+      passwordHash:
+        formData.passwordHash,
+
       age: Number(formData.age),
+
       role: 'Teacher'
     };
 
-    // UPDATE
-    if (this.editMode && this.selectedTeacherId) {
+    /* =========================
+       UPDATE
+    ========================= */
+    if (
+      this.editMode &&
+      this.selectedTeacherId
+    ) {
 
       this.appService
-        .updateUser(this.selectedTeacherId, payload)
+        .updateUser(
+          this.selectedTeacherId,
+          payload
+        )
         .subscribe({
 
-          next: () => this.loadTeachers()
+          next: () => {
+
+            this.loadTeachers();
+
+            this.showTeacherDialog = false;
+          },
+
+          error: (err) => {
+            console.error(err);
+          }
         });
 
       return;
     }
 
-    // CREATE
-    this.appService.addUser(payload).subscribe({
-      next: () => this.loadTeachers()
-    });
+    /* =========================
+       CREATE
+    ========================= */
+    this.appService
+      .addUser(payload)
+      .subscribe({
+
+        next: () => {
+
+          this.loadTeachers();
+
+          this.showTeacherDialog = false;
+        },
+
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
 
   /* =========================
      DELETE
   ========================= */
-  deleteTeacher(teacher: User, event: Event) {
+  deleteTeacher(
+    teacher: User,
+    event: Event
+  ) {
 
     event.stopPropagation();
 
-    if (!confirm(`Delete ${teacher.firstName}?`)) return;
+    if (
+      !confirm(
+        `Delete ${teacher.firstName}?`
+      )
+    ) return;
 
-    this.appService.deleteUser(teacher.id!).subscribe({
-      next: () => this.loadTeachers()
-    });
+    this.appService
+      .deleteUser(teacher.id!)
+      .subscribe({
+
+        next: () => {
+
+          this.loadTeachers();
+        },
+
+        error: (err) => {
+          console.error(err);
+        }
+      });
   }
+
 }

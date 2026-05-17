@@ -1,0 +1,47 @@
+<div class="profile-wrapper" *ngIf="user; else noUser">
+
+  <div class="profile-card">
+
+    <!-- HEADER -->
+    <div class="profile-header">
+      <div class="avatar">
+        <i class="pi pi-user"></i>
+      </div>
+
+      <div>
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <p class="role">{{ user.role }}</p>
+      </div>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="profile-details">
+
+      <div class="row">
+        <span>Email</span>
+        <strong>{{ user.email }}</strong>
+      </div>
+
+      <div class="row">
+        <span>User ID</span>
+        <strong>{{ user.id }}</strong>
+      </div>
+
+      <div class="row">
+        <span>Role</span>
+        <strong>{{ user.role }}</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- EMPTY STATE -->
+<ng-template #noUser>
+  <div class="empty">
+    <i class="pi pi-exclamation-circle"></i>
+    <p>No user found. Please login again.</p>
+  </div>
+</ng-template>

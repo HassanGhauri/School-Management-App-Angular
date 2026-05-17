@@ -1,8 +1,12 @@
 <p-dialog
   [(visible)]="visible"
+
+  (onHide)="close()"
+
   [modal]="true"
   [closable]="true"
   [draggable]="false"
+
   [style]="{ width: '700px' }"
 
   [header]="

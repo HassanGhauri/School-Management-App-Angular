@@ -22,8 +22,6 @@ export interface User {
 export interface Subject {
   id?: number;
   name: string;
-
-  // optional
   classes?: any[];
 }
 
@@ -31,9 +29,7 @@ export interface Subject {
    CLASS DTO
 ========================= */
 export interface ClassDto {
-
   id: number;
-
   className: string;
 
   classTeacherName?: string;
@@ -55,11 +51,8 @@ export interface ClassDto {
    CLASS MODEL
 ========================= */
 export interface ClassModel {
-
   id?: number;
-
   className: string;
-
   classTeacherId: number;
 }
 
@@ -68,111 +61,107 @@ export interface ClassModel {
 })
 export class AppService {
 
-  private baseUrl =
-    'http://localhost:5164/sms';
+  private baseUrl = 'http://localhost:5164/sms';
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
   /* =========================
-     USER APIs
+     JWT HELPERS
+  ========================= */
+
+  private getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  private getAuthHeaders() {
+    const token = this.getToken();
+
+    return {
+      headers: {
+        Authorization: token ? `Bearer ${token}` : ''
+      }
+    };
+  }
+
+  /* =========================
+     USER APIs (PROTECTED)
   ========================= */
 
   getUsers(): Observable<User[]> {
-
     return this.http.get<User[]>(
-      `${this.baseUrl}/users`
+      `${this.baseUrl}/users`,
+      this.getAuthHeaders()
     );
   }
 
-  getUserById(
-    id: number
-  ): Observable<User> {
-
+  getUserById(id: number): Observable<User> {
     return this.http.get<User>(
-      `${this.baseUrl}/user/${id}`
+      `${this.baseUrl}/user/${id}`,
+      this.getAuthHeaders()
     );
   }
 
-  addUser(
-    user: User
-  ): Observable<any> {
-
+  addUser(user: User): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/user`,
-      user
+      user,
+      this.getAuthHeaders()
     );
   }
 
-  updateUser(
-    id: number,
-    user: User
-  ): Observable<any> {
-
+  updateUser(id: number, user: User): Observable<any> {
     return this.http.put(
       `${this.baseUrl}/user/${id}`,
-      user
+      user,
+      this.getAuthHeaders()
     );
   }
 
-  deleteUser(
-    id: number
-  ): Observable<any> {
-
+  deleteUser(id: number): Observable<any> {
     return this.http.delete(
-      `${this.baseUrl}/user/${id}`
+      `${this.baseUrl}/user/${id}`,
+      this.getAuthHeaders()
     );
   }
 
   /* =========================
-     CLASS APIs
+     CLASS APIs (PROTECTED)
   ========================= */
 
-  getClasses():
-    Observable<ClassDto[]> {
-
+  getClasses(): Observable<ClassDto[]> {
     return this.http.get<ClassDto[]>(
-      `${this.baseUrl}/classes`
+      `${this.baseUrl}/classes`,
+      this.getAuthHeaders()
     );
   }
 
-  getClassById(
-    id: number
-  ): Observable<ClassDto> {
-
+  getClassById(id: number): Observable<ClassDto> {
     return this.http.get<ClassDto>(
-      `${this.baseUrl}/class/${id}`
+      `${this.baseUrl}/class/${id}`,
+      this.getAuthHeaders()
     );
   }
 
-  addClass(
-    cls: ClassModel
-  ): Observable<any> {
-
+  addClass(cls: ClassModel): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/class`,
-      cls
+      cls,
+      this.getAuthHeaders()
     );
   }
 
-  updateClass(
-    id: number,
-    cls: ClassModel
-  ): Observable<any> {
-
+  updateClass(id: number, cls: ClassModel): Observable<any> {
     return this.http.put(
       `${this.baseUrl}/class/${id}`,
-      cls
+      cls,
+      this.getAuthHeaders()
     );
   }
 
-  deleteClass(
-    id: number
-  ): Observable<any> {
-
+  deleteClass(id: number): Observable<any> {
     return this.http.delete(
-      `${this.baseUrl}/class/${id}`
+      `${this.baseUrl}/class/${id}`,
+      this.getAuthHeaders()
     );
   }
 
@@ -180,93 +169,68 @@ export class AppService {
      CLASS RELATIONSHIPS
   ========================= */
 
-  addStudentToClass(
-    classId: number,
-    studentId: number
-  ): Observable<any> {
-
+  addStudentToClass(classId: number, studentId: number): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/class/${classId}/add-student/${studentId}`,
-      {}
+      {},
+      this.getAuthHeaders()
     );
   }
 
-  addTeacherToClass(
-    classId: number,
-    teacherId: number
-  ): Observable<any> {
-
+  addTeacherToClass(classId: number, teacherId: number): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/class/${classId}/add-teacher/${teacherId}`,
-      {}
+      {},
+      this.getAuthHeaders()
     );
   }
 
-  addSubjectToClass(
-    classId: number,
-    subjectId: number
-  ): Observable<any> {
-
+  addSubjectToClass(classId: number, subjectId: number): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/class/${classId}/add-subject/${subjectId}`,
-      {}
+      {},
+      this.getAuthHeaders()
     );
   }
 
   /* =========================
-     SUBJECT APIs
+     SUBJECT APIs (PROTECTED)
   ========================= */
 
-  // GET ALL SUBJECTS
-  getSubjects():
-    Observable<Subject[]> {
-
+  getSubjects(): Observable<Subject[]> {
     return this.http.get<Subject[]>(
-      `${this.baseUrl}/subjects`
+      `${this.baseUrl}/subjects`,
+      this.getAuthHeaders()
     );
   }
 
-  // GET SUBJECT BY ID
-  getSubjectById(
-    id: number
-  ): Observable<Subject> {
-
+  getSubjectById(id: number): Observable<Subject> {
     return this.http.get<Subject>(
-      `${this.baseUrl}/subject/${id}`
+      `${this.baseUrl}/subject/${id}`,
+      this.getAuthHeaders()
     );
   }
 
-  // ADD SUBJECT
-  addSubject(
-    subject: Subject
-  ): Observable<any> {
-
+  addSubject(subject: Subject): Observable<any> {
     return this.http.post(
       `${this.baseUrl}/subject`,
-      subject
+      subject,
+      this.getAuthHeaders()
     );
   }
 
-  // UPDATE SUBJECT
-  updateSubject(
-    id: number,
-    subject: Subject
-  ): Observable<any> {
-
+  updateSubject(id: number, subject: Subject): Observable<any> {
     return this.http.put(
       `${this.baseUrl}/subject/${id}`,
-      subject
+      subject,
+      this.getAuthHeaders()
     );
   }
 
-  // DELETE SUBJECT
-  deleteSubject(
-    id: number
-  ): Observable<any> {
-
+  deleteSubject(id: number): Observable<any> {
     return this.http.delete(
-      `${this.baseUrl}/subject/${id}`
+      `${this.baseUrl}/subject/${id}`,
+      this.getAuthHeaders()
     );
   }
-
 }

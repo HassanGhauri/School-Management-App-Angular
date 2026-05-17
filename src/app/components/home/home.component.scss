@@ -1,159 +1,188 @@
 /* =========================
-   DASHBOARD
+   CLASS PAGE WRAPPER (IMPORTANT FIX)
 ========================= */
-.dashboard {
-
-  display: flex;
-
-  gap: 24px;
-
-  flex-wrap: wrap;
+.class-page {
+  width: 100%;
 }
 
-/* =========================
-   BASE CARD
-========================= */
-.stat-card {
-
-  width: 280px;
-
-  border-radius: 22px;
-
-  background:
-    rgba(12, 22, 18, 0.75);
-
-  backdrop-filter: blur(18px);
-
-  border:
-    1px solid rgba(34, 197, 94, 0.16);
-
-  color: #f0fdf4;
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-/* HOVER */
-.stat-card:hover {
-
-  transform: translateY(-4px);
-
-  box-shadow:
-    0 20px 40px
-    rgba(0,0,0,0.35);
-}
-
-/* =========================
-   CONTENT
-========================= */
-.card-content {
-
-  display: flex;
-
-  align-items: center;
-
+/* reuse grid exactly like your Classes page */
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 18px;
 }
 
 /* =========================
-   ICON WRAPPER
+   FORCE SAME CARD STYLE (CRITICAL FIX)
 ========================= */
-.icon-wrapper {
 
+/* override PrimeNG wrapper so no dashboard styling leaks */
+:host ::ng-deep .class-card.p-card {
+  background: rgba(12, 22, 18, 0.7) !important;
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  border-radius: 18px;
+
+  color: #d1fae5;
+
+  transition: all 0.25s ease;
+}
+
+/* hover EXACT match */
+.clickable-card {
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.clickable-card:hover {
+  transform: translateY(-5px);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
+}
+
+/* =========================
+   HEADER (MATCH EXACTLY)
+========================= */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 12px;
+  color: #f0fdf4;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title i {
+  color: #22c55e;
+  font-size: 18px;
+}
+
+/* =========================
+   BODY
+========================= */
+.card-body p {
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* =========================
+   TAGS (EXACT MATCH)
+========================= */
+.tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 12px;
+
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+
+  font-size: 12px;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+/* PrimeNG icon buttons fix */
+:host ::ng-deep .p-button.p-button-text {
+  width: 34px;
+  height: 34px;
+}
+/* =========================
+   ADMIN DASHBOARD (ISOLATED)
+========================= */
+
+.admin-dashboard {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* CARD */
+:host ::ng-deep .admin-stat-card {
+  width: 280px;
+  border-radius: 22px;
+
+  background: rgba(12, 22, 18, 0.75);
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(34, 197, 94, 0.16);
+
+  color: #f0fdf4;
+
+  transition: all 0.25s ease;
+}
+
+:host ::ng-deep .admin-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* CONTENT */
+.admin-card-content {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* ICON BOX */
+.admin-icon-box {
   width: 64px;
-
   height: 64px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   border-radius: 18px;
-
-  background:
-    rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.06);
 }
 
-/* =========================
-   ICON
-========================= */
-.icon {
-
+.admin-icon-box i {
   font-size: 32px;
 }
 
-/* =========================
-   NUMBERS
-========================= */
-h2 {
-
+/* TEXT */
+.admin-text h2 {
   margin: 0;
-
   font-size: 30px;
-
   font-weight: 700;
 }
 
-/* =========================
-   LABEL
-========================= */
-p {
-
+.admin-text p {
   margin-top: 4px;
-
   color: #bbf7d0;
-
   font-size: 14px;
 }
 
-/* =========================
-   TEACHERS
-========================= */
-.teacher-card {
-
-  border-left:
-    5px solid #22c55e;
+/* ROLE COLORS */
+.admin-stat-card.teacher {
+  border-left: 5px solid #22c55e;
 }
 
-.teacher-card .icon {
-  color: #22c55e;
+.admin-stat-card.student {
+  border-left: 5px solid #0ea5e9;
 }
 
-/* =========================
-   STUDENTS
-========================= */
-.student-card {
-
-  border-left:
-    5px solid #0ea5e9;
-}
-
-.student-card .icon {
-  color: #0ea5e9;
-}
-
-/* =========================
-   CLASSES
-========================= */
-.class-card {
-
-  border-left:
-    5px solid #f59e0b;
-}
-
-.class-card .icon {
-  color: #f59e0b;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-@media (max-width: 768px) {
-
-  .stat-card {
-    width: 100%;
-  }
+.admin-stat-card.class {
+  border-left: 5px solid #f59e0b;
 }

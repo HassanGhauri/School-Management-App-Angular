@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CardModule } from 'primeng/card';
@@ -18,13 +23,12 @@ import { AuthService } from '../../services/AuthService.component';
     CardModule,
     InputTextModule,
     PasswordModule,
-    ButtonModule
+    ButtonModule,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-
   loginForm: FormGroup;
   loading = false;
   errorMessage = '';
@@ -32,11 +36,11 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
@@ -55,17 +59,18 @@ export class LoginComponent {
 
         console.log('Login Success:', res);
 
-        // navigate to dashboard
-        this.router.navigate(['/app/home']);
+        // =========================
+        // ROLE BASED NAVIGATION
+        // =========================
+          this.router.navigate(['/app/home']);
       },
       error: (err) => {
         this.loading = false;
 
-        this.errorMessage =
-          err?.error || 'Login failed. Please try again.';
+        this.errorMessage = err?.error || 'Login failed. Please try again.';
 
         console.error('Login Error:', err);
-      }
+      },
     });
   }
 }

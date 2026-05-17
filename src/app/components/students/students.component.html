@@ -2,27 +2,50 @@
 
   <h2>Students</h2>
 
-  <p-button label="Add Student" icon="pi pi-user-plus" styleClass="add-btn" (click)="openAddStudentDialog()"></p-button>
+  <p-button
+    label="Add Student"
+    icon="pi pi-user-plus"
+    styleClass="add-btn"
+    (click)="openAddStudentDialog()"
+  ></p-button>
 
 </div>
 
-<p-table [value]="students" [loading]="loading" [paginator]="true" [rows]="5" responsiveLayout="scroll"
-  styleClass="student-table">
+<p-table
+  [value]="students"
+  [loading]="loading"
+  [paginator]="true"
+  [rows]="5"
+  responsiveLayout="scroll"
+  styleClass="student-table"
+>
 
   <!-- HEADER -->
   <ng-template pTemplate="header">
+
     <tr>
+
       <th>ID</th>
+
       <th>Name</th>
+
       <th>Email</th>
+
       <th>Age</th>
+
       <th>Role</th>
+
       <th>Actions</th>
+
     </tr>
+
   </ng-template>
 
   <!-- BODY -->
-  <ng-template pTemplate="body" let-student>
+  <ng-template
+    pTemplate="body"
+    let-student
+  >
 
     <tr>
 
@@ -38,25 +61,43 @@
       <td>{{ student.age }}</td>
 
       <td>
+
         <span class="role-badge">
           {{ student.role }}
         </span>
+
       </td>
 
       <!-- ACTIONS -->
       <td class="actions">
 
         <!-- EDIT -->
-        <!-- EDIT -->
-        <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded
-                   p-button-text
-                   p-button-success" pTooltip="Edit Subject" (click)="editStudent(student)"></button>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          class="
+            p-button-rounded
+            p-button-text
+            p-button-success
+          "
+          pTooltip="Edit Student"
+          (click)="editStudent(student)"
+        ></button>
 
         <!-- DELETE -->
-        <!-- DELETE -->
-        <button pButton type="button" icon="pi pi-trash" class="p-button-rounded
-                   p-button-text
-                   p-button-danger" pTooltip="Delete Subject" (click)="deleteStudent(student, $event)"></button>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-trash"
+          class="
+            p-button-rounded
+            p-button-text
+            p-button-danger
+          "
+          pTooltip="Delete Student"
+          (click)="deleteStudent(student, $event)"
+        ></button>
 
       </td>
 
@@ -67,7 +108,19 @@
 </p-table>
 
 <!-- =========================
-     DIALOG (ADD + EDIT)
+     DIALOG
 ========================= -->
-<app-dialog-form [(visible)]="showStudentDialog" type="student" [editMode]="editMode" (save)="saveStudent($event)">
+<app-dialog-form
+
+  [(visible)]="showStudentDialog"
+
+  type="student"
+
+  [editMode]="editMode"
+
+  [data]="selectedStudent"
+
+  (save)="saveStudent($event)"
+
+>
 </app-dialog-form>

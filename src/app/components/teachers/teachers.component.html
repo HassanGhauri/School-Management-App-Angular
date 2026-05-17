@@ -22,18 +22,30 @@
 
   <!-- HEADER -->
   <ng-template pTemplate="header">
+
     <tr>
+
       <th>ID</th>
+
       <th>Full Name</th>
+
       <th>Email</th>
+
       <th>Age</th>
+
       <th>Role</th>
+
       <th>Actions</th>
+
     </tr>
+
   </ng-template>
 
   <!-- BODY -->
-  <ng-template pTemplate="body" let-teacher>
+  <ng-template
+    pTemplate="body"
+    let-teacher
+  >
 
     <tr>
 
@@ -49,10 +61,12 @@
       <td>{{ teacher.age }}</td>
 
       <td>
+
         <p-tag
           value="Teacher"
           severity="success"
         ></p-tag>
+
       </td>
 
       <!-- ACTIONS -->
@@ -95,13 +109,17 @@
 </p-table>
 
 <!-- =========================
-     DYNAMIC DIALOG
+     DIALOG
 ========================= -->
 <app-dialog-form
 
   [(visible)]="showTeacherDialog"
 
   type="teacher"
+
+  [editMode]="editMode"
+
+  [data]="selectedTeacher"
 
   (save)="addTeacher($event)"
 

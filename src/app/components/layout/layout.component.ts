@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from '../../services/AuthService.component';
 
 @Component({
   selector: 'app-layout',
@@ -11,32 +12,82 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
-  items: MenuItem[] = [
-    {
-      label: 'Dashboard',
-      icon: 'pi pi-home',
-      routerLink: '/app/home',
-    },
-    {
-      label: 'Students',
-      icon: 'pi pi-user', // 👈 better than pi-users for individual records
-      routerLink: '/app/users',
-    },
-    {
-      label: 'Teachers',
-      icon: 'pi pi-user-edit', // 👈 clearly indicates staff/teachers
-      routerLink: '/app/teachers',
-    },
-    {
-      label: 'Classes',
-      icon: 'pi pi-building', // 👈 correct for school structure
-      routerLink: '/app/classes',
-    },
-    {
-      label: 'Subjects',
-      icon: 'pi pi-book', // 👈 best match for academic subjects
-      routerLink: '/app/subjects',
-    },
-  ];
+export class LayoutComponent implements OnInit {
+
+  items: MenuItem[] = [];
+  currentUser: any;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
+
+  ngOnInit(): void {
+
+    this.currentUser = this.authService.getCurrentUser();
+    const role = this.currentUser?.role;
+
+    // =========================
+    // TEACHER / STUDENT
+    // =========================
+    if (role === 'Teacher' || role === 'student') {
+
+      this.items = [
+        {
+          label: 'Dashboard',
+          icon: 'pi pi-home',
+          routerLink: '/app/home',
+        },
+        {
+          label: 'Profile',
+          icon: 'pi pi-user',
+          routerLink: '/app/profile',
+        }
+      ];
+    }
+
+    // =========================
+    // PRINCIPAL (ADMIN)
+    // =========================
+    else if (role === 'Principal') {
+
+      this.items = [
+        {
+          label: 'Dashboard',
+          icon: 'pi pi-home',
+          routerLink: '/app/home',
+        },
+        {
+          label: 'Students',
+          icon: 'pi pi-users',
+          routerLink: '/app/users',
+        },
+        {
+          label: 'Teachers',
+          icon: 'pi pi-user-edit',
+          routerLink: '/app/teachers',
+        },
+        {
+          label: 'Classes',
+          icon: 'pi pi-building',
+          routerLink: '/app/classes',
+        },
+        {
+          label: 'Subjects',
+          icon: 'pi pi-book',
+          routerLink: '/app/subjects',
+        },
+        {
+          label: 'Profile',
+          icon: 'pi pi-user',
+          routerLink: '/app/profile',
+        },
+      ];
+    }
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

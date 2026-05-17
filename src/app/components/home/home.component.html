@@ -1,111 +1,118 @@
-<div class="dashboard">
+<!-- =========================
+     PRINCIPAL DASHBOARD
+========================= -->
+<div *ngIf="isAdmin()" class="admin-dashboard">
 
   <!-- TEACHERS -->
-  <p-card
-    styleClass="
-      stat-card
-      teacher-card
-    "
-  >
-
-    <div class="card-content">
-
-      <div class="icon-wrapper">
-
-        <i
-          class="
-            pi
-            pi-user-edit
-            icon
-          "
-        ></i>
-
+  <p-card styleClass="admin-stat-card teacher">
+    <div class="admin-card-content">
+      <div class="admin-icon-box">
+        <i class="pi pi-user-edit"></i>
       </div>
 
-      <div>
-
-        <h2>
-          {{ totalTeachers }}
-        </h2>
-
+      <div class="admin-text">
+        <h2>{{ totalTeachers }}</h2>
         <p>Teachers</p>
-
       </div>
-
     </div>
-
   </p-card>
 
   <!-- STUDENTS -->
-  <p-card
-    styleClass="
-      stat-card
-      student-card
-    "
-  >
-
-    <div class="card-content">
-
-      <div class="icon-wrapper">
-
-        <i
-          class="
-            pi
-            pi-users
-            icon
-          "
-        ></i>
-
+  <p-card styleClass="admin-stat-card student">
+    <div class="admin-card-content">
+      <div class="admin-icon-box">
+        <i class="pi pi-users"></i>
       </div>
 
-      <div>
-
-        <h2>
-          {{ totalStudents }}
-        </h2>
-
+      <div class="admin-text">
+        <h2>{{ totalStudents }}</h2>
         <p>Students</p>
-
       </div>
-
     </div>
-
   </p-card>
 
   <!-- CLASSES -->
-  <p-card
-    styleClass="
-      stat-card
-      class-card
-    "
-  >
-
-    <div class="card-content">
-
-      <div class="icon-wrapper">
-
-        <i
-          class="
-            pi
-            pi-building
-            icon
-          "
-        ></i>
-
+  <p-card styleClass="admin-stat-card class">
+    <div class="admin-card-content">
+      <div class="admin-icon-box">
+        <i class="pi pi-building"></i>
       </div>
 
-      <div>
-
-        <h2>
-          {{ totalClasses }}
-        </h2>
-
+      <div class="admin-text">
+        <h2>{{ totalClasses }}</h2>
         <p>Classes</p>
+      </div>
+    </div>
+  </p-card>
+
+</div>
+
+<!-- =========================
+     TEACHER / STUDENT VIEW
+========================= -->
+<div *ngIf="isTeacherOrStudent()" class="class-page">
+
+  <div class="class-grid">
+
+    <p-card
+      *ngFor="let cls of classes"
+      styleClass="class-card clickable-card"
+      (click)="openClass(cls)"
+    >
+
+      <!-- HEADER -->
+      <ng-template pTemplate="header">
+
+        <div class="card-header">
+
+          <div class="title">
+            <i class="pi pi-building"></i>
+            <h3>{{ cls.className }}</h3>
+          </div>
+
+          <div class="actions">
+            <p-button
+              type="button"
+              icon="pi pi-external-link"
+              class="p-button-rounded p-button-text p-button-info"
+              (click)="openClass(cls); $event.stopPropagation()"
+            ></p-button>
+          </div>
+
+        </div>
+
+      </ng-template>
+
+      <!-- BODY -->
+      <div class="card-body">
+
+        <p>
+          <i class="pi pi-user"></i>
+          <b>Teacher:</b>
+          {{ cls.classTeacherName || 'Not Assigned' }}
+        </p>
+
+        <p>
+          <i class="pi pi-users"></i>
+          <b>Students:</b>
+          {{ cls.students.length }}
+        </p>
+
+        <p>
+          <i class="pi pi-book"></i>
+          <b>Subjects:</b>
+        </p>
+
+        <div class="tags">
+          <span class="tag" *ngFor="let s of cls.subjects">
+            {{ s }}
+          </span>
+        </div>
 
       </div>
 
-    </div>
+    </p-card>
 
-  </p-card>
+  </div>
 
 </div>
