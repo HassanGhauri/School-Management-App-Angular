@@ -44,6 +44,7 @@ export class LayoutComponent implements OnInit {
           routerLink: '/app/profile',
         }
       ];
+
     }
 
     // =========================

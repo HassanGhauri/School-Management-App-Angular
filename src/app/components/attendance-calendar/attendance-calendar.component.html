@@ -1,0 +1,68 @@
+<section class="attendance-section" aria-labelledby="attendance-heading">
+  <div class="attendance-heading">
+    <div>
+      <p class="eyebrow">History</p>
+      <h2 id="attendance-heading">Attendance</h2>
+    </div>
+    <div class="month-controls">
+      <button type="button" aria-label="Previous month" title="Previous month" (click)="changeMonth(-1)">
+        <i class="pi pi-chevron-left"></i>
+      </button>
+      <strong>{{ monthLabel }}</strong>
+      <button type="button" aria-label="Next month" title="Next month" (click)="changeMonth(1)">
+        <i class="pi pi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <p *ngIf="attendanceError" class="attendance-error" role="alert">
+    {{ attendanceError }}
+  </p>
+  <p *ngIf="attendanceLoading" class="attendance-loading">Loading attendance...</p>
+
+  <div class="attendance-calendar" [attr.aria-busy]="attendanceLoading">
+    <span class="weekday" *ngFor="let weekday of weekdays">{{ weekday }}</span>
+    <ng-container *ngFor="let cell of calendarCells">
+      <span *ngIf="!cell.date" class="calendar-empty" aria-hidden="true"></span>
+      <button
+        *ngIf="cell.date"
+        type="button"
+        class="calendar-day"
+        [class.selected]="cell.key === selectedDateKey"
+        [class.today]="cell.isToday"
+        [attr.aria-label]="cell.date | date: 'fullDate'"
+        [attr.aria-pressed]="cell.key === selectedDateKey"
+        (click)="selectCalendarDate(cell)"
+      >
+        <span class="day-number">{{ cell.date.getDate() }}</span>
+        <span class="day-marks" *ngIf="cell.records.length">
+          <span
+            *ngFor="let record of cell.records | slice: 0:2"
+            class="attendance-mark"
+            [ngClass]="record.status.toLowerCase()"
+            [title]="record.className + ': ' + record.status"
+          >{{ record.status.charAt(0) }}</span>
+          <span class="more-marks" *ngIf="cell.records.length > 2">+{{ cell.records.length - 2 }}</span>
+        </span>
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="attendance-legend" aria-label="Attendance status legend">
+    <span><i class="legend-dot present"></i>Present</span>
+    <span><i class="legend-dot absent"></i>Absent</span>
+    <span><i class="legend-dot late"></i>Late</span>
+    <span><i class="legend-dot excused"></i>Excused</span>
+  </div>
+
+  <div class="selected-attendance">
+    <h3>{{ selectedDateLabel }}</h3>
+    <div class="attendance-entry" *ngFor="let record of selectedDateAttendance">
+      <span>{{ record.className }}</span>
+      <strong [ngClass]="record.status.toLowerCase()">{{ record.status }}</strong>
+    </div>
+    <p *ngIf="!attendanceLoading && !selectedDateAttendance.length" class="no-attendance">
+      No attendance recorded for this date.
+    </p>
+  </div>
+</section>

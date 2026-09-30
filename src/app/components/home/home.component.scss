@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.student-section-title {
+  margin: 0 0 14px;
+  color: #f0fdf4;
+  font-size: 20px;
+}
+
 /* reuse grid exactly like your Classes page */
 .class-grid {
   display: grid;
@@ -186,3 +192,4 @@
 .admin-stat-card.class {
   border-left: 5px solid #f59e0b;
 }
+

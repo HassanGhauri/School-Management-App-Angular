@@ -52,8 +52,12 @@
       <td>{{ student.id }}</td>
 
       <td>
-        {{ student.firstName }}
-        {{ student.lastName }}
+        <a
+          class="student-link"
+          [routerLink]="['/app/users', student.id]"
+        >
+          {{ student.firstName }} {{ student.lastName }}
+        </a>
       </td>
 
       <td>{{ student.email }}</td>

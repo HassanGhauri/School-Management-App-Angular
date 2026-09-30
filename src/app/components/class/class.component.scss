@@ -64,3 +64,62 @@ li {
 
   font-size: 12px;
 }
+
+.attendance-card {
+  background: rgba(12, 22, 18, 0.7);
+}
+
+.attendance-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.attendance-toolbar label {
+  color: #86efac;
+}
+
+.attendance-toolbar input,
+.attendance-card select {
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+  border-radius: 6px;
+  background: #0b1c16;
+  color: #f0fdf4;
+}
+
+.attendance-card select {
+  min-width: 150px;
+}
+
+.attendance-message {
+  color: #4ade80;
+}
+
+.attendance-error {
+  color: #fca5a5;
+}
+
+.attendance-loading {
+  color: #d1fae5;
+}
+
+.save-attendance {
+  min-height: 38px;
+  margin-top: 14px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #16a34a;
+  color: #052e16;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-attendance:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}

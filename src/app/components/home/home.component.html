@@ -52,6 +52,8 @@
 ========================= -->
 <div *ngIf="isTeacherOrStudent()" class="class-page">
 
+  <h2 *ngIf="isStudent()" class="student-section-title">Your classes</h2>
+
   <div class="class-grid">
 
     <p-card
@@ -114,5 +116,10 @@
     </p-card>
 
   </div>
+
+  <app-attendance-calendar
+    *ngIf="isStudent() && currentUser?.id"
+    [studentId]="currentUser.id"
+  ></app-attendance-calendar>
 
 </div>

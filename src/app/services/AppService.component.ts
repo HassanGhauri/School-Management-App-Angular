@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 /* =========================
@@ -45,6 +45,31 @@ export interface ClassDto {
   }[];
 
   subjects: string[];
+}
+
+export type AttendanceStatus = 'Present' | 'Absent' | 'Late' | 'Excused';
+
+export interface ClassAttendanceStudent {
+  studentId: number;
+  fullName: string;
+  status: AttendanceStatus | null;
+  note: string | null;
+  isMarked: boolean;
+}
+
+export interface ClassAttendance {
+  classId: number;
+  className: string;
+  date: string;
+  students: ClassAttendanceStudent[];
+}
+
+export interface StudentAttendance {
+  date: string;
+  classId: number;
+  className: string;
+  status: AttendanceStatus;
+  note: string | null;
 }
 
 /* =========================
@@ -139,6 +164,45 @@ export class AppService {
     return this.http.get<ClassDto>(
       `${this.baseUrl}/class/${id}`,
       this.getAuthHeaders()
+    );
+  }
+
+  getClassAttendance(classId: number, date: string): Observable<ClassAttendance> {
+    return this.http.get<ClassAttendance>(
+      `${this.baseUrl}/class/${classId}/attendance`,
+      {
+        ...this.getAuthHeaders(),
+        params: { date }
+      }
+    );
+  }
+
+  saveClassAttendance(
+    classId: number,
+    attendance: { date: string; records: { studentId: number; status: AttendanceStatus }[] }
+  ): Observable<void> {
+    return this.http.put<void>(
+      `${this.baseUrl}/class/${classId}/attendance`,
+      attendance,
+      this.getAuthHeaders()
+    );
+  }
+
+  getStudentAttendance(
+    studentId: number,
+    from?: string,
+    to?: string
+  ): Observable<StudentAttendance[]> {
+    let params = new HttpParams();
+    if (from) params = params.set('from', from);
+    if (to) params = params.set('to', to);
+
+    return this.http.get<StudentAttendance[]>(
+      `${this.baseUrl}/student/${studentId}/attendance`,
+      {
+        ...this.getAuthHeaders(),
+        params
+      }
     );
   }
 

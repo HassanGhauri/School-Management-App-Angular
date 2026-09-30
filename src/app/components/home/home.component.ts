@@ -10,11 +10,12 @@ import {
 } from '../../services/appService.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { Button } from "primeng/button";
+import { AttendanceCalendarComponent } from '../attendance-calendar/attendance-calendar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CardModule, RouterOutlet, Button],
+  imports: [CommonModule, CardModule, RouterOutlet, Button, AttendanceCalendarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -49,10 +50,12 @@ export class HomeComponent implements OnInit {
   }
 
   isTeacherOrStudent(): boolean {
-    return (
-      this.currentUser?.role === 'Teacher' ||
-      this.currentUser?.role === 'student'
-    );
+    const role = this.currentUser?.role?.toLowerCase();
+    return role === 'teacher' || role === 'student';
+  }
+
+  isStudent(): boolean {
+    return this.currentUser?.role?.toLowerCase() === 'student';
   }
 
   /* =========================
@@ -117,13 +120,10 @@ export class HomeComponent implements OnInit {
         // =========================
         // STUDENT → THEIR CLASS
         // =========================
-        else if (user.role === 'student') {
+        else if (this.isStudent()) {
 
           this.classes = data.filter(cls =>
-            cls.students.some(s =>
-              s.fullName.includes(user.firstName) ||
-              s.fullName.includes(user.lastName)
-            )
+            cls.students.some(student => student.id === user.id)
           );
         }
 
@@ -133,4 +133,5 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error(err)
     });
   }
+
 }

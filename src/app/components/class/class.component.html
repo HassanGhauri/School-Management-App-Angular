@@ -13,6 +13,76 @@
 
   </p-card>
 
+  <p-card
+    *ngIf="canManageAttendance"
+    header="Attendance"
+    styleClass="section-card attendance-card"
+  >
+    <div class="attendance-toolbar">
+      <label for="attendance-date">Date</label>
+      <input
+        id="attendance-date"
+        type="date"
+        [value]="attendanceDate"
+        (change)="onAttendanceDateChange($any($event.target).value)"
+      >
+      <span *ngIf="attendanceMessage" class="attendance-message" role="status">
+        {{ attendanceMessage }}
+      </span>
+    </div>
+
+    <p *ngIf="attendanceError" class="attendance-error" role="alert">
+      {{ attendanceError }}
+    </p>
+    <p *ngIf="attendanceLoading" class="attendance-loading">Loading attendance...</p>
+
+    <p-table
+      *ngIf="!attendanceLoading && attendanceData"
+      [value]="attendanceData.students"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Student</th>
+          <th>Attendance</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-student>
+        <tr>
+          <td>{{ student.fullName }}</td>
+          <td>
+            <select
+              [value]="student.status || ''"
+              [disabled]="attendanceSaving || student.isMarked"
+              [attr.aria-label]="'Attendance for ' + student.fullName"
+              (change)="setAttendanceStatus(student.studentId, $any($event.target).value)"
+            >
+              <option value="">Select status</option>
+              <option *ngFor="let status of attendanceStatuses" [value]="status">
+                {{ status }}
+              </option>
+            </select>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="2">No students are assigned to this class.</td></tr>
+      </ng-template>
+    </p-table>
+
+    <button
+      *ngIf="attendanceData?.students?.length"
+      type="button"
+      class="save-attendance"
+      [disabled]="attendanceSaving || !allAttendanceMarked"
+      (click)="saveAttendance()"
+    >
+      {{ attendanceSaving ? 'Saving...' : 'Save attendance' }}
+    </button>
+  </p-card>
+
   <!-- GRID -->
   <div class="grid">
 

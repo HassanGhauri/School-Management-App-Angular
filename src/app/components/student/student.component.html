@@ -1,0 +1,55 @@
+<a class="back-link" routerLink="/app/users">
+  <i class="pi pi-arrow-left"></i>
+  Students
+</a>
+
+<section *ngIf="student; else studentState" class="student-page">
+  <header class="student-header">
+    <div class="avatar" aria-hidden="true">
+      <i class="pi pi-user"></i>
+    </div>
+    <div>
+      <p class="eyebrow">Student profile</p>
+      <h2>{{ student.firstName }} {{ student.lastName }}</h2>
+      <span class="role-badge">{{ student.role }}</span>
+    </div>
+  </header>
+
+  <div class="student-details">
+    <div class="detail-row">
+      <span>Student ID</span>
+      <strong>{{ student.id }}</strong>
+    </div>
+    <div class="detail-row">
+      <span>Email</span>
+      <strong>{{ student.email }}</strong>
+    </div>
+    <div class="detail-row">
+      <span>Age</span>
+      <strong>{{ student.age }}</strong>
+    </div>
+    <div class="detail-row" *ngIf="student.createdAt">
+      <span>Date added</span>
+      <strong>{{ student.createdAt | date: 'mediumDate' }}</strong>
+    </div>
+  </div>
+
+  <app-attendance-calendar
+    *ngIf="student.id"
+    [studentId]="student.id"
+  ></app-attendance-calendar>
+</section>
+
+<ng-template #studentState>
+  <div class="student-state" *ngIf="loading; else missingStudent">
+    <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
+    <span>Loading student...</span>
+  </div>
+</ng-template>
+
+<ng-template #missingStudent>
+  <div class="student-state">
+    <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+    <span>Student not found.</span>
+  </div>
+</ng-template>
