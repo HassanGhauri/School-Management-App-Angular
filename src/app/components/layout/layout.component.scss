@@ -5,9 +5,9 @@
   overflow: hidden;
 
   background:
-    radial-gradient(circle at top left, #22c55e33, transparent 40%),
-    radial-gradient(circle at bottom right, #0ea5e944, transparent 45%),
-    linear-gradient(135deg, #0b1220, #052e16);
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.1), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.08), transparent 45%),
+    linear-gradient(135deg, #f8fafc, #eef2f7);
 }
 
 /* ================= SIDEBAR ================= */
@@ -17,10 +17,10 @@
   padding: 20px;
   overflow-y: auto;
 
-  background: rgba(12, 22, 18, 0.75);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(18px);
 
-  border-right: 1px solid rgba(34, 197, 94, 0.2);
+  border-right: 1px solid rgba(15, 23, 42, 0.08);
 
   display: flex;
   flex-direction: column;
@@ -52,13 +52,13 @@
 
 .sidebar-header h2 {
   margin: 0;
-  color: #f0fdf4;
+  color: #0f172a;
 }
 
 .sidebar-header p {
   margin: 0;
   font-size: 12px;
-  color: #86efac;
+  color: #4b5563;
 }
 
 /* ================= PRIME MENU CUSTOMIZATION ================= */
@@ -69,9 +69,9 @@
 
 /* menu item */
 :host ::ng-deep .p-panelmenu .p-panelmenu-header > a {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(34, 197, 94, 0.12);
-  color: #d1fae5;
+  background: rgba(248, 250, 252, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #1f2937;
 
   border-radius: 12px;
 
@@ -80,12 +80,17 @@
 
 /* hover */
 :host ::ng-deep .p-panelmenu .p-panelmenu-header > a:hover {
-  background: rgba(34, 197, 94, 0.12);
+  background: rgba(34, 197, 94, 0.08);
 }
 
 /* active */
 :host ::ng-deep .p-panelmenu .p-menuitem-link {
-  color: #d1fae5;
+  color: #1f2937;
+}
+
+:host ::ng-deep .p-panelmenu .p-panelmenu-content {
+  background: transparent;
+  border: none;
 }
 
 /* icons */
@@ -103,10 +108,10 @@
 
   padding: 12px;
 
-  color: #86efac;
+  color: #374151;
   font-size: 13px;
 
-  border-top: 1px solid rgba(34, 197, 94, 0.15);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 /* ================= CONTENT ================= */
@@ -125,10 +130,10 @@
   padding: 18px;
   border-radius: 16px;
 
-  background: rgba(12, 22, 18, 0.6);
-  border: 1px solid rgba(34, 197, 94, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.06);
 
-  color: #f0fdf4;
+  color: #0f172a;
   margin-bottom: 20px;
 }
 
@@ -145,24 +150,26 @@
 
   border-radius: 18px;
 
-  background: rgba(12, 22, 18, 0.55);
-  border: 1px solid rgba(34, 197, 94, 0.12);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 .sidebar-footer.logout {
   cursor: pointer;
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #fecaca;
-
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #374151;
+  border-radius: 10px;
   transition: 0.2s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
 }
 
 .sidebar-footer.logout:hover {
-  background: rgba(239, 68, 68, 0.2);
-  transform: translateY(-2px);
+  background: #f8fafc;
+  border-color: rgba(34, 197, 94, 0.25);
+  transform: translateY(-1px);
 }
 
 .sidebar-footer.logout i {
-  color: #ef4444;
+  color: #16a34a;
 }

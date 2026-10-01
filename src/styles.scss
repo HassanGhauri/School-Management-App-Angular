@@ -1,5 +1,81 @@
 @import "primeicons/primeicons.css";/* You can add global styles to this file, and also import other style files */
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+body {
+  min-height: 100vh;
+}
+
+app-root {
+  display: block;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* Force PrimeNG surfaces to match the light app theme */
+:root {
+  --surface-card: #ffffff;
+  --surface-section: #ffffff;
+  --surface-hover: #f1f5f9;
+  --text-color: #0f172a;
+  --text-color-secondary: #475569;
+  --border-color: rgba(15, 23, 42, 0.08);
+}
+
+:host ::ng-deep .p-card,
+:host ::ng-deep .p-dialog,
+:host ::ng-deep .p-panel,
+:host ::ng-deep .p-panelmenu .p-panelmenu-content,
+:host ::ng-deep .p-datatable,
+:host ::ng-deep .p-datatable .p-datatable-wrapper,
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr,
+:host ::ng-deep .p-paginator,
+:host ::ng-deep .p-dropdown-panel,
+:host ::ng-deep .p-overlaypanel,
+:host ::ng-deep .p-dialog-content,
+:host ::ng-deep .p-dialog-header,
+:host ::ng-deep .p-dialog-footer {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.08) !important;
+}
+
+:host ::ng-deep .p-card .p-card-body,
+:host ::ng-deep .p-card .p-card-content,
+:host ::ng-deep .p-panel .p-panel-content,
+:host ::ng-deep .p-dialog .p-dialog-content,
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  background: transparent !important;
+  color: #0f172a !important;
+}
+
+:host ::ng-deep .p-inputtext,
+:host ::ng-deep .p-dropdown,
+:host ::ng-deep .p-select,
+:host ::ng-deep .p-multiselect,
+:host ::ng-deep .p-password input,
+:host ::ng-deep select {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid rgba(148, 163, 184, 0.6) !important;
+}
+
+:host ::ng-deep .p-inputtext:focus,
+:host ::ng-deep .p-dropdown:focus,
+:host ::ng-deep .p-select:focus,
+:host ::ng-deep .p-password input:focus,
+:host ::ng-deep select:focus {
+  border-color: #22c55e !important;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14) !important;
 }

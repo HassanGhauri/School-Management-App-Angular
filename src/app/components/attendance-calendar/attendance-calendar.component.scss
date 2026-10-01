@@ -1,12 +1,12 @@
 :host {
   display: block;
-  color: #f0fdf4;
+  color: #0f172a;
 }
 
 .attendance-section {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid rgba(34, 197, 94, 0.15);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .attendance-heading,
@@ -20,11 +20,12 @@
 .attendance-heading h2 {
   margin: 0;
   font-size: 19px;
+  color: #0f172a;
 }
 
 .eyebrow {
   margin: 0 0 4px;
-  color: #86efac;
+  color: #4b5563;
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -32,6 +33,7 @@
 .month-controls strong {
   min-width: 130px;
   text-align: center;
+  color: #1f2937;
 }
 
 .month-controls button {
@@ -39,15 +41,15 @@
   width: 34px;
   height: 34px;
   place-items: center;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 6px;
   background: transparent;
-  color: #86efac;
+  color: #374151;
   cursor: pointer;
 }
 
 .month-controls button:hover {
-  background: rgba(34, 197, 94, 0.12);
+  background: rgba(34, 197, 94, 0.08);
 }
 
 .attendance-calendar {
@@ -59,7 +61,7 @@
 
 .weekday {
   padding: 7px 2px;
-  color: #86efac;
+  color: #4b5563;
   font-size: 12px;
   text-align: center;
 }
@@ -76,21 +78,21 @@
   align-items: center;
   gap: 5px;
   padding: 6px 2px;
-  border: 1px solid rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.025);
-  color: #f0fdf4;
+  background: rgba(248, 250, 252, 0.9);
+  color: #0f172a;
   cursor: pointer;
 }
 
 .calendar-day:hover,
 .calendar-day.selected {
   border-color: #22c55e;
-  background: rgba(34, 197, 94, 0.12);
+  background: rgba(34, 197, 94, 0.08);
 }
 
 .calendar-day.today .day-number {
-  color: #4ade80;
+  color: #15803d;
   font-weight: 700;
 }
 
@@ -111,44 +113,44 @@
 }
 
 .present {
-  color: #4ade80;
+  color: #15803d;
 }
 
 .attendance-mark.present,
 .legend-dot.present {
-  background: rgba(34, 197, 94, 0.2);
+  background: rgba(34, 197, 94, 0.18);
 }
 
 .absent {
-  color: #f87171;
+  color: #dc2626;
 }
 
 .attendance-mark.absent,
 .legend-dot.absent {
-  background: rgba(239, 68, 68, 0.2);
+  background: rgba(239, 68, 68, 0.18);
 }
 
 .late {
-  color: #fbbf24;
+  color: #d97706;
 }
 
 .attendance-mark.late,
 .legend-dot.late {
-  background: rgba(245, 158, 11, 0.2);
+  background: rgba(245, 158, 11, 0.18);
 }
 
 .excused {
-  color: #7dd3fc;
+  color: #0369a1;
 }
 
 .attendance-mark.excused,
 .legend-dot.excused {
-  background: rgba(14, 165, 233, 0.2);
+  background: rgba(14, 165, 233, 0.18);
 }
 
 .more-marks {
   align-self: center;
-  color: #d1fae5;
+  color: #374151;
   font-size: 10px;
 }
 
@@ -157,7 +159,7 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 14px;
-  color: #d1fae5;
+  color: #374151;
   font-size: 12px;
 }
 
@@ -180,6 +182,7 @@
 .selected-attendance h3 {
   margin: 0 0 10px;
   font-size: 15px;
+  color: #0f172a;
 }
 
 .attendance-entry {
@@ -187,21 +190,22 @@
   justify-content: space-between;
   gap: 12px;
   padding: 10px 12px;
-  border-top: 1px solid rgba(34, 197, 94, 0.1);
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .attendance-entry strong {
   font-size: 13px;
+  color: #0f172a;
 }
 
 .no-attendance,
 .attendance-loading {
-  color: #a7c6b0;
+  color: #4b5563;
   font-size: 13px;
 }
 
 .attendance-error {
-  color: #fca5a5;
+  color: #b91c1c;
 }
 
 @media (max-width: 600px) {

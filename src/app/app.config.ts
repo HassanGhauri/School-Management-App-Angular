@@ -15,6 +15,9 @@ export const appConfig: ApplicationConfig = {
     providePrimeNG({
       theme: {
         preset: Lara,
+        options: {
+          darkModeSelector: false,
+        },
       },
     }),
     provideZoneChangeDetection({ eventCoalescing: true }),

@@ -7,7 +7,7 @@
 
 .student-section-title {
   margin: 0 0 14px;
-  color: #f0fdf4;
+  color: #0f172a;
   font-size: 20px;
 }
 
@@ -24,13 +24,13 @@
 
 /* override PrimeNG wrapper so no dashboard styling leaks */
 :host ::ng-deep .class-card.p-card {
-  background: rgba(12, 22, 18, 0.7) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(18px);
 
-  border: 1px solid rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 18px;
 
-  color: #d1fae5;
+  color: #1f2937;
 
   transition: all 0.25s ease;
 }
@@ -43,8 +43,8 @@
 
 .clickable-card:hover {
   transform: translateY(-5px);
-  border: 1px solid rgba(34, 197, 94, 0.4);
-  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.12);
 }
 
 /* =========================
@@ -56,7 +56,7 @@
   align-items: center;
 
   padding: 12px;
-  color: #f0fdf4;
+  color: #0f172a;
 }
 
 .title {
@@ -78,6 +78,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  color: #374151;
 }
 
 /* =========================
@@ -94,8 +95,8 @@
   padding: 4px 10px;
   border-radius: 12px;
 
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
 
   font-size: 12px;
 }
@@ -128,19 +129,19 @@
   width: 280px;
   border-radius: 22px;
 
-  background: rgba(12, 22, 18, 0.75);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(18px);
 
-  border: 1px solid rgba(34, 197, 94, 0.16);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 
-  color: #f0fdf4;
+  color: #0f172a;
 
   transition: all 0.25s ease;
 }
 
 :host ::ng-deep .admin-stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
 }
 
 /* CONTENT */
@@ -160,7 +161,7 @@
   justify-content: center;
 
   border-radius: 18px;
-  background: rgba(255,255,255,0.06);
+  background: rgba(34, 197, 94, 0.08);
 }
 
 .admin-icon-box i {
@@ -176,7 +177,7 @@
 
 .admin-text p {
   margin-top: 4px;
-  color: #bbf7d0;
+  color: #4b5563;
   font-size: 14px;
 }
 

@@ -1,59 +1,121 @@
-# SchoolManagementApp
+# School Management App (Frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.24.
+This is the Angular frontend for the School Management System. It provides a dashboard for managing students, teachers, classes, subjects, and attendance records.
 
-## Development server
+## Project overview
 
-To start a local development server, run:
+The frontend is built with Angular 19 and PrimeNG. It is designed to work with the ASP.NET Core backend and provides the user interface for:
+
+- Admin login and authentication
+- Dashboard overview
+- Student management
+- Teacher management
+- Class management
+- Subject management
+- Attendance tracking and marking
+- User profile view
+
+## Tech stack
+
+- Angular 19
+- TypeScript
+- PrimeNG UI components
+- PrimeIcons
+- RxJS
+
+## Prerequisites
+
+Before running the app, make sure you have:
+
+- Node.js 18+ or newer
+- npm
+- Angular CLI (optional, but recommended)
+
+You can install Angular CLI globally with:
+
+```bash
+npm install -g @angular/cli
+```
+
+## Installation
+
+From the frontend folder:
+
+```bash
+cd SchoolManagementApp
+npm install
+```
+
+## Run the app in development mode
+
+```bash
+npm start
+```
+
+or:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then open the app in your browser:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+The app automatically reloads when files change.
+
+## Production build
+
+To create a production build:
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+The generated build output will be saved in the `dist/` folder.
 
-To build the project run:
+## Optional: watch mode
 
 ```bash
-ng build
+npm run watch
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Project structure
 
-## Running unit tests
+```text
+SchoolManagementApp/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   ├── services/
+│   │   └── ...
+│   ├── main.ts
+│   └── styles.scss
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Notes
+
+- The frontend expects the backend API to be running on `http://localhost:4200` for CORS and local development, depending on your configuration.
+- Authentication uses JWT tokens returned by the backend.
+- For a complete working environment, make sure the backend database and API server are also running.
+
+## Troubleshooting
+
+If dependencies are not installed correctly:
 
 ```bash
-ng test
+rm -rf node_modules package-lock.json
+npm install
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+If Angular reports a port conflict, you can run:
 
 ```bash
-ng e2e
+ng serve --port 4201
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
